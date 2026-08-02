@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Zone Management</title>
+</head>
+
+<body>
+
+<h2>Zone Management</h2>
+
+<a href="/dashboard">Dashboard</a> |
+<a href="/zones/add">Add Zone</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>ID</th>
+    <th>Zone Name</th>
+    <th>Chain Name</th>
+    <th>Action</th>
+</tr>
+
+
+<% if(zones.length > 0){ %>
+
+    <% zones.forEach(zone => { %>
+
+    <tr>
+
+        <td>
+            <%= zone.zone_id %>
+        </td>
+
+        <td>
+            <%= zone.zone_name %>
+        </td>
+
+        <td>
+            <%= zone.company_name %>
+        </td>
+
+        <td>
+
+            <a href="/zones/edit/<%= zone.zone_id %>">
+                Edit
+            </a>
+
+            |
+
+            <a href="/zones/delete/<%= zone.zone_id %>"
+            onclick="return confirm('Delete this zone?')">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    <% }) %>
+
+
+<% } else { %>
+
+<tr>
+<td colspan="4">
+No Zones Available
+</td>
+</tr>
+
+<% } %>
+
+
+</table>
+
+</body>
+
+</html>

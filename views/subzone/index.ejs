@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SubZone Management</title>
+</head>
+
+<body>
+
+<h2>SubZone Management</h2>
+
+<a href="/dashboard">Dashboard</a> |
+<a href="/subzones/add">Add SubZone</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>ID</th>
+    <th>SubZone Name</th>
+    <th>Zone Name</th>
+    <th>Action</th>
+</tr>
+
+<% if (subzones.length > 0) { %>
+
+    <% subzones.forEach(subzone => { %>
+
+    <tr>
+        <td><%= subzone.subzone_id %></td>
+        <td><%= subzone.subzone_name %></td>
+        <td><%= subzone.zone_name %></td>
+        <td>
+            <a href="/subzones/edit/<%= subzone.subzone_id %>">Edit</a> |
+            |
+
+            <a href="/subzones/delete/<%= subzone.subzone_id %>"
+               onclick="return confirm('Are you sure you want to delete this SubZone?')">
+                Delete
+            </a>
+       
+       
+        </td>
+    </tr>
+
+    <% }) %>
+
+<% } else { %>
+
+<tr>
+    <td colspan="4">No SubZones Available</td>
+</tr>
+
+<% } %>
+
+</table>
+
+</body>
+
+</html>

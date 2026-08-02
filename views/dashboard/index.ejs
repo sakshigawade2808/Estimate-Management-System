@@ -1,0 +1,87 @@
+<%- include("../partials/header") %>
+
+<%- include("../partials/sidebar") %>
+
+<%- include("../partials/navbar") %>
+
+<h2>Dashboard</h2>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow p-3 text-center">
+
+            <h5>Total Groups</h5>
+
+            <h2><%= counts.totalGroups %></h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow p-3 text-center">
+
+            <h5>Total Chains</h5>
+
+            <h2><%= counts.totalChains %></h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow p-3 text-center">
+
+            <h5>Total Zones</h5>
+
+            <h2><%= counts.totalZones %></h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow p-3 text-center">
+
+            <h5>Total SubZones</h5>
+
+            <h2><%= counts.totalSubZones %></h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow p-3 text-center">
+
+            <h5>Total Brands</h5>
+
+            <h2><%= counts.totalBrands %></h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow p-3 text-center">
+
+            <h5>Total Estimates</h5>
+
+            <h2><%= counts.totalEstimates %></h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<%- include("../partials/footer") %>

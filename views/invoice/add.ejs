@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Invoice</title>
+</head>
+
+<body>
+
+<h2>Add Invoice</h2>
+
+<a href="/invoices">Back to Invoices</a>
+
+<br><br>
+
+<form action="/invoices/add" method="POST">
+
+    <label>Estimate</label><br>
+
+    <select name="estimate_id" id="estimate" required>
+
+        <option value="">Select Estimate</option>
+
+        <% estimates.forEach(estimate => { %>
+
+            <option
+                value="<%= estimate.estimate_id %>"
+                data-total="<%= estimate.total_amount %>">
+
+                Estimate #<%= estimate.estimate_id %> -
+                <%= estimate.service %>
+
+            </option>
+
+        <% }) %>
+
+    </select>
+
+    <br><br>
+
+    <label>Invoice Number</label><br>
+
+    <input
+        type="text"
+        name="invoice_number"
+        required>
+
+    <br><br>
+
+    <label>Invoice Date</label><br>
+
+    <input
+        type="date"
+        name="invoice_date"
+        required>
+
+    <br><br>
+
+    <label>GST</label><br>
+
+    <input
+        type="number"
+        id="gst"
+        name="gst"
+        value="0"
+        step="0.01">
+
+    <br><br>
+
+    <label>Discount</label><br>
+
+    <input
+        type="number"
+        id="discount"
+        name="discount"
+        value="0"
+        step="0.01">
+
+    <br><br>
+
+    <label>Grand Total</label><br>
+
+    <input
+        type="number"
+        id="grand_total"
+        name="grand_total"
+        readonly>
+
+    <br><br>
+
+    <button type="submit">
+        Save Invoice
+    </button>
+
+</form>
+
+<script>
+
+const estimate = document.getElementById("estimate");
+const gst = document.getElementById("gst");
+const discount = document.getElementById("discount");
+const grandTotal = document.getElementById("grand_total");
+
+function calculateTotal(){
+
+    const option = estimate.options[estimate.selectedIndex];
+
+    const estimateTotal =
+        Number(option.dataset.total) || 0;
+
+    const gstValue =
+        Number(gst.value) || 0;
+
+    const discountValue =
+        Number(discount.value) || 0;
+
+    grandTotal.value =
+        (estimateTotal + gstValue - discountValue).toFixed(2);
+
+}
+
+estimate.addEventListener("change", calculateTotal);
+gst.addEventListener("input", calculateTotal);
+discount.addEventListener("input", calculateTotal);
+
+</script>
+
+</body>
+
+</html>

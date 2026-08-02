@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Estimate</title>
+</head>
+
+<body>
+
+<h2>Edit Estimate</h2>
+
+<a href="/estimates">Back to Estimates</a>
+
+<br><br>
+
+<form action="/estimates/edit/<%= estimate.estimate_id %>" method="POST">
+
+    <label>Service</label><br>
+
+    <input
+        type="text"
+        name="service"
+        value="<%= estimate.service %>"
+        required
+    >
+
+    <br><br>
+
+    <label>Quantity</label><br>
+
+    <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        value="<%= estimate.quantity %>"
+        min="1"
+        required
+    >
+
+    <br><br>
+
+    <label>Price Per Unit</label><br>
+
+    <input
+        type="number"
+        id="price_per_unit"
+        name="price_per_unit"
+        step="0.01"
+        min="0"
+        value="<%= estimate.price_per_unit %>"
+        required
+    >
+
+    <br><br>
+
+    <label>Total Amount</label><br>
+
+    <input
+        type="number"
+        id="total_amount"
+        name="total_amount"
+        step="0.01"
+        value="<%= estimate.total_amount %>"
+        readonly
+    >
+
+    <br><br>
+
+    <label>Expected Delivery</label><br>
+
+    <input
+        type="date"
+        name="expected_delivery"
+        value="<%= estimate.expected_delivery ? estimate.expected_delivery.toISOString().split('T')[0] : '' %>"
+    >
+
+    <br><br>
+
+    <label>Delivery Details</label><br>
+
+    <textarea
+        name="delivery_details"
+        rows="4"
+        cols="40"
+    ><%= estimate.delivery_details %></textarea>
+
+    <br><br>
+
+    <button type="submit">
+        Update Estimate
+    </button>
+
+</form>
+
+<script>
+
+const quantity = document.getElementById("quantity");
+const price = document.getElementById("price_per_unit");
+const total = document.getElementById("total_amount");
+
+function calculateTotal() {
+
+    let qty = parseFloat(quantity.value) || 0;
+    let rate = parseFloat(price.value) || 0;
+
+    total.value = (qty * rate).toFixed(2);
+
+}
+
+quantity.addEventListener("keyup", calculateTotal);
+price.addEventListener("keyup", calculateTotal);
+
+quantity.addEventListener("change", calculateTotal);
+price.addEventListener("change", calculateTotal);
+
+</script>
+
+</body>
+
+</html>

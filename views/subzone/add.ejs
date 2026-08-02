@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add SubZone</title>
+</head>
+
+<body>
+
+<h2>Add SubZone</h2>
+
+<a href="/subzones">Back to SubZones</a>
+
+<br><br>
+
+<form action="/subzones/add" method="POST">
+
+    <label>SubZone Name:</label>
+
+    <input
+        type="text"
+        name="subzone_name"
+        required
+    >
+
+    <br><br>
+
+    <label>Select Zone:</label>
+
+    <select name="zone_id" required>
+
+        <option value="">Select Zone</option>
+
+        <% zones.forEach(zone => { %>
+
+            <option value="<%= zone.zone_id %>">
+                <%= zone.zone_name %>
+            </option>
+
+        <% }) %>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Add SubZone
+    </button>
+
+</form>
+
+</body>
+</html>

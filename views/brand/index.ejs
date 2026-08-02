@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Brand Management</title>
+</head>
+
+<body>
+
+<h2>Brand Management</h2>
+
+<a href="/dashboard">Dashboard</a> |
+<a href="/brands/add">Add Brand</a>
+
+<br><br>
+
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>ID</th>
+    <th>Brand Name</th>
+    <th>SubZone</th>
+    <th>Action</th>
+</tr>
+
+
+<% if(brands.length > 0){ %>
+
+
+    <% brands.forEach(brand => { %>
+
+
+    <tr>
+
+        <td>
+            <%= brand.brand_id %>
+        </td>
+
+
+        <td>
+            <%= brand.brand_name %>
+        </td>
+
+
+        <td>
+            <%= brand.subzone_name %>
+        </td>
+
+
+        <td>
+
+            <a href="/brands/edit/<%= brand.brand_id %>">
+                Edit
+            </a>
+
+            |
+
+            <a href="/brands/delete/<%= brand.brand_id %>"
+            onclick="return confirm('Delete this Brand?')">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+
+    <% }) %>
+
+
+<% } else { %>
+
+
+<tr>
+
+<td colspan="4">
+    No Brands Available
+</td>
+
+</tr>
+
+
+<% } %>
+
+
+</table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Estimate Management</title>
+</head>
+
+<body>
+
+    <h2>Estimate Management</h2>
+
+    <a href="/dashboard">Dashboard</a> |
+    <a href="/estimates/add">Add Estimate</a>
+    <form action="/estimates" method="GET">
+
+    <input 
+        type="text"
+        name="search"
+        placeholder="Search by Service, Brand, Group, Chain"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<br>
+    <br><br>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>Group</th>
+            <th>Chain</th>
+            <th>Brand</th>
+            <th>Zone</th>
+            <th>Service</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Delivery Date</th>
+            <th>Action</th>
+        </tr>
+
+        <% if (estimates.length > 0) { %>
+
+            <% estimates.forEach(estimate => { %>
+
+                <tr>
+
+                    <td>
+                        <%= estimate.estimate_id %>
+                    </td>
+
+                    <td>
+                        <%= estimate.group_name %>
+                    </td>
+
+                    <td>
+                        <%= estimate.company_name %>
+                    </td>
+
+                    <td>
+                        <%= estimate.brand_name %>
+                    </td>
+
+                    <td>
+                        <%= estimate.zone_name %>
+                    </td>
+
+                    <td>
+                        <%= estimate.service %>
+                    </td>
+
+                    <td>
+                        <%= estimate.quantity %>
+                    </td>
+
+                    <td>
+                        <%= estimate.price_per_unit %>
+                    </td>
+
+                    <td>
+                        <%= estimate.total_amount %>
+                    </td>
+
+                    <td>
+                        <%= estimate.expected_delivery %>
+                    </td>
+
+                    <td>
+
+                        <a href="/estimates/edit/<%= estimate.estimate_id %>">
+                            Edit
+                        </a>
+
+                        |
+
+                        <a href="/estimates/delete/<%= estimate.estimate_id %>"
+                           onclick="return confirm('Are you sure you want to delete this Estimate?')">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        <% } else { %>
+
+            <tr>
+                <td colspan="11" align="center">
+                    No Estimates Found
+                </td>
+            </tr>
+
+        <% } %>
+
+    </table>
+
+</body>
+
+</html>

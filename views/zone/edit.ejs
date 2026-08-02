@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Zone</title>
+</head>
+
+<body>
+
+<h2>Edit Zone</h2>
+
+
+<a href="/zones">
+    Back to Zones
+</a>
+
+
+<br><br>
+
+
+<form action="/zones/edit/<%= zone.zone_id %>" method="POST">
+
+
+    <label>
+        Zone Name:
+    </label>
+
+
+    <input 
+        type="text"
+        name="zone_name"
+        value="<%= zone.zone_name %>"
+        required
+    >
+
+
+    <br><br>
+
+
+    <label>
+        Select Chain:
+    </label>
+
+
+    <select name="chain_id" required>
+
+
+        <% chains.forEach(chain => { %>
+
+
+            <option 
+                value="<%= chain.chain_id %>"
+                <%= chain.chain_id == zone.chain_id ? "selected" : "" %>
+            >
+
+                <%= chain.company_name %>
+
+            </option>
+
+
+        <% }) %>
+
+
+    </select>
+
+
+    <br><br>
+
+
+    <button type="submit">
+        Update Zone
+    </button>
+
+
+</form>
+
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Invoice Management</title>
+</head>
+
+<body>
+
+<h2>Invoice Management</h2>
+
+<a href="/dashboard">Dashboard</a> |
+<a href="/invoices/add">Add Invoice</a>
+
+<br><br>
+<form action="/invoices" method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Invoice..."
+        value="<%= search %>">
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<br>
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>ID</th>
+    <th>Invoice No</th>
+    <th>Estimate</th>
+    <th>Service</th>
+    <th>GST</th>
+    <th>Discount</th>
+    <th>Grand Total</th>
+    <th>Date</th>
+    <th>Action</th>
+</tr>
+
+<% if(invoices.length > 0){ %>
+
+<% invoices.forEach(invoice => { %>
+
+<tr>
+
+<td><%= invoice.invoice_id %></td>
+
+<td><%= invoice.invoice_number %></td>
+
+<td><%= invoice.estimate_id %></td>
+
+<td><%= invoice.service %></td>
+
+<td><%= invoice.gst %></td>
+
+<td><%= invoice.discount %></td>
+
+<td><%= invoice.grand_total %></td>
+
+<td><%= invoice.invoice_date %></td>
+
+<td>
+
+<a href="/invoices/edit/<%= invoice.invoice_id %>">
+Edit
+</a>
+
+|
+
+<a href="/invoices/delete/<%= invoice.invoice_id %>"
+onclick="return confirm('Delete Invoice?')">
+Delete
+</a>
+
+
+
+    <a href="/invoices/edit/<%= invoice.invoice_id %>">
+        Edit
+    </a>
+
+    |
+
+    <a href="/invoices/delete/<%= invoice.invoice_id %>"
+       onclick="return confirm('Delete Invoice?')">
+        Delete
+    </a>
+
+
+
+
+</td>
+
+</tr>
+
+<% }) %>
+
+<% } else { %>
+
+<tr>
+
+<td colspan="9" align="center">
+
+No Invoices Found
+
+</td>
+
+</tr>
+
+<% } %>
+
+</table>
+
+</body>
+</html>

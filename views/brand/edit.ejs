@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+<title>Edit Brand</title>
+
+</head>
+
+
+<body>
+
+
+<h2>Edit Brand</h2>
+
+
+<a href="/brands">
+Back to Brands
+</a>
+
+
+<br><br>
+
+
+
+<form action="/brands/edit/<%= brand.brand_id %>" method="POST">
+
+
+
+<label>
+Brand Name:
+</label>
+
+
+<input
+type="text"
+name="brand_name"
+value="<%= brand.brand_name %>"
+required
+>
+
+
+<br><br>
+
+
+
+<label>
+Select SubZone:
+</label>
+
+
+
+<select name="subzone_id" required>
+
+
+<% subzones.forEach(subzone => { %>
+
+
+<option 
+value="<%= subzone.subzone_id %>"
+<%= subzone.subzone_id == brand.subzone_id ? "selected" : "" %>
+>
+
+<%= subzone.subzone_name %>
+
+</option>
+
+
+<% }) %>
+
+
+</select>
+
+
+<br><br>
+
+
+<button type="submit">
+Update Brand
+</button>
+
+
+</form>
+
+
+
+</body>
+
+</html>
