@@ -2,39 +2,39 @@
 <html>
 
 <head>
-    <title>Add SubZone</title>
+    <title>Add Zone</title>
 </head>
 
 <body>
 
-<h2>Add SubZone</h2>
+<h2>Add Zone</h2>
 
-<a href="/subzones">Back to SubZones</a>
+<a href="/zones">Back to Zones</a>
 
 <br><br>
 
-<form action="/subzones/add" method="POST">
+<form action="/zones/add" method="POST">
 
-    <label>SubZone Name:</label>
+    <label>Zone Name:</label><br>
 
     <input
         type="text"
-        name="subzone_name"
+        name="zone_name"
         required
     >
 
     <br><br>
 
-    <label>Select Zone:</label>
+    <label>Select Chain:</label><br>
 
-    <select name="zone_id" required>
+    <select name="chain_id" required>
 
-        <option value="">Select Zone</option>
+        <option value="">Select Chain</option>
 
-        <% zones.forEach(zone => { %>
+        <% chains.forEach(chain => { %>
 
-            <option value="<%= zone.zone_id %>">
-                <%= zone.zone_name %>
+            <option value="<%= chain.chain_id %>">
+                <%= chain.company_name %>
             </option>
 
         <% }) %>
@@ -44,7 +44,7 @@
     <br><br>
 
     <button type="submit">
-        Add SubZone
+        Add Zone
     </button>
 
 </form>

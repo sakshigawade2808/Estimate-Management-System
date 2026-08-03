@@ -28,20 +28,15 @@ const showZones = (req, res) => {
 // Show Add Zone Page
 const showAddZone = (req, res) => {
 
-    if (!req.session.user) {
-        return res.redirect("/login");
-    }
-
     zoneModel.getChains((err, chains) => {
 
         if (err) {
-            console.log(err);
             return res.send("Database Error");
         }
 
         res.render("zone/add", {
             user: req.session.user,
-            chains: chains
+            chains
         });
 
     });
